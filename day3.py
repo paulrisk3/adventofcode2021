@@ -1,16 +1,27 @@
-rotated_array = []
-
 with open("input/day3_input.txt") as file:
-    iter_1 = 0
     rotated_array = []
+
+    for i in file.readline().rstrip():
+            rotated_array.append([])
+
     while (line := file.readline().rstrip()):
-        iter_2 = 0
+        iter = 0
         line_array = []
         for char in line:
-            print(iter_1, iter_2)
-            line_array.append(int(char))
-            iter_2 += 1
-        rotated_array.append(line_array)
-        iter_1 += 1
+            rotated_array[iter].append(int(char))
+            iter += 1
     
-print(rotated_array)
+gamma = ''
+epsilon = ''
+
+# build binary string
+for j in rotated_array:
+    if sum(j)/len(j) < .5:
+        gamma += '0'
+        epsilon += '1'
+    else:
+        gamma += '1'
+        epsilon += '0'
+
+print("Gamma:", int(gamma, 2))
+print("Epsilon:", int(epsilon,2 ))
