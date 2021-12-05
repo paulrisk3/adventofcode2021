@@ -16,12 +16,12 @@ epsilon = ''
 
 # build binary string
 for j in rotated_array:
-    if sum(j)/len(j) < .5:
+    if sum(j)/(len(j)+1) < .5:
         gamma += '0'
         epsilon += '1'
     else:
         gamma += '1'
         epsilon += '0'
 
-print("Gamma:", int(gamma, 2))
-print("Epsilon:", int(epsilon,2 ))
+print("Gamma", gamma, int(gamma, 2))
+print("Epsilon", epsilon, int(epsilon,2 ))
