@@ -1,17 +1,14 @@
-def remove_non_matches(arr, match, count = 0):
-    print(match, arr)
-    # filter and remove non-matches
-    for item in arr:
-        if item[count] != match[0]:
-            arr.remove(item)
+def remove_non_matches(arr, match, counter = 0):
+    arr = list(filter(lambda item: item[counter] == match[0], arr))
 
-    # if more than one result in the array, do it again
+    # if more than one result in the array, do it again.
     if len(arr) > 1 and len(match) > 1:
-        print("Run it again.")
-        count += 1
-        remove_non_matches(arr, match[1:], count)
-
-    return arr
+        arr = list(filter(lambda item: item[counter] == match[0], arr))
+        counter += 1
+        remove_non_matches(arr, match[1:], counter)
+    else:
+        print("We've stopped.", arr)
+        return arr
 
 with open("input/day3_input.txt") as file:
     initial_array = []
@@ -61,10 +58,9 @@ test_array = [
     '100001111000'
 ]
 
-# o2_results = remove_non_matches(gamma_array, gamma)
-# print("O2 Rating:", o2_results)
-# print(gamma_array)
-# co2_results = remove_non_matches(epsilon_array, epsilon)
-# print("CO2 Rating:", co2_results)
-results = remove_non_matches(test_array, '10000111')
-print(results)
+o2_results = remove_non_matches(gamma_array, gamma)
+co2_results = remove_non_matches(epsilon_array, epsilon)
+# results = remove_non_matches(test_array, '10000111')
+# print("Results:", results)
+print("O2 Results:", o2_results)
+print("CO2 Results:", co2_results)
